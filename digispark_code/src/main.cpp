@@ -1,26 +1,30 @@
 #include <Arduino.h>
 #include <DigiKeyboard.h>
 
-void setup() {
+void setup()
+{
   DigiKeyboard.sendKeyStroke(0);
 
-  DigiKeyboard.sendKeyStroke(KEY_T , MOD_CONTROL_LEFT | MOD_ALT_LEFT); 
-  delay(1000);
+  DigiKeyboard.sendKeyStroke(KEY_T, MOD_CONTROL_LEFT | MOD_ALT_LEFT);
+  delay(2000);
 
   DigiKeyboard.println(F("sudo -s"));
-  delay(500);
+  delay(1000);
 
-  DigiKeyboard.println(F("zypper in git --non-interactive || zypper in git-core --non-interactive || apt-get update && apt-get install git-all -y"));
-  delay(20000);
-  
-  DigiKeyboard.println(F("git clone https://github.com/krygacz/polibudasuperhotspot.git"));
-  delay(10000);
-  DigiKeyboard.println(F("cd polibudasuperhotspot"));
-  delay(100);
-  DigiKeyboard.println(F("chmod +x ./polibudasuperhotspot.sh"));
-  delay(100);
-  DigiKeyboard.println(F("./polibudasuperhotspot.sh"));
+  DigiKeyboard.println(F("student"));
+  delay(1000);
+
+  DigiKeyboard.println(F("echo -e \"#!/bin/bash\" > bootstrap.sh"));
+  DigiKeyboard.println(F("echo -e \"zypper in git --non-interactive || zypper in git-core --non-interactive || apt-get update && apt-get install git-all -y \" >> bootstrap.sh"));
+  DigiKeyboard.println(F("echo -e \"git clone https://github.com/krygacz/polibudasuperhotspot.git\" >> bootstrap.sh"));
+  DigiKeyboard.println(F("echo -e \"cd polibudasuperhotspot\" >> bootstrap.sh"));
+  DigiKeyboard.println(F("echo -e \"chmod +x ./polibudasuperhotspot.sh\" >> bootstrap.sh"));
+  DigiKeyboard.println(F("echo -e \"./polibudasuperhotspot.sh\" >> bootstrap.sh"));
+
+  DigiKeyboard.println(F("chmod +x ./bootstrap.sh"));
+  DigiKeyboard.println(F("./bootstrap.sh"));
 }
 
-void loop() {
+void loop()
+{
 }
